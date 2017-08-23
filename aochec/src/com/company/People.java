@@ -7,12 +7,13 @@ public class People {
 
     private String name;
     private int age;
+    private int assets;
     private int invoiceAmount;
+    private int futurePayout;
 
     public People(){
 
     }
-
 
     public String getName() {
         return name;
@@ -41,5 +42,22 @@ public class People {
 
     void print(){
         System.out.println("This food is great");
+    }
+
+
+    public int getAssets() {
+        return assets;
+    }
+
+    public void setAssets(int assets) {
+        this.assets = assets;
+    }
+
+    public int getFuturePayout() {
+        return futurePayout;
+    }
+
+    public void setFuturePayout(int futurePayout) {
+        this.futurePayout = futurePayout;
     }
 }
