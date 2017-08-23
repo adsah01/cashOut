@@ -1,21 +1,24 @@
 package com.company;
 
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.List;
 
 public class Main {
 
     public static int goalz = 12000000;
+    public static int capital;
     public static boolean lifeVacation;
-    public static int noOfPeopleThatWantVacation;
-    public static HashMap<String, Integer> people;
+    public static int noOfPeopleThatWantRetirement;
+    public static boolean typeOfPerson;
+    public static String name;
 
     public static void main(String[] args) {
 	// Bygg den recursivt den där den räknar år för år - when interestBearingCapital = goalz lifeVacation is true
+        People rp =new NonWorkingPerson();
+        People rpa =new WorkingPerson();
         setUpConditions();
-        assetCount();
-        System.out.println("hello world vacation");
+
+        //Bygg rekursiv grej
+
     }
 
     public static void setUpConditions(){
@@ -24,24 +27,34 @@ public class Main {
     }
 
     public static void groupConditions(){
-        noOfPeopleThatWantVacation = Integer.parseInt(JOptionPane.showInputDialog(null, "How many people want this vacation?"));
+        noOfPeopleThatWantRetirement = Integer.parseInt(JOptionPane.showInputDialog(null, "How many people want this vacation?"));
     }
 
 
     public static void individualConditions(){
-        System.out.println(noOfPeopleThatWantVacation);
-        for(int i = 0; i < noOfPeopleThatWantVacation; i++){
-            people.put("kalle", 2);
-            System.out.println(i);
+        for(int i = 0; i < noOfPeopleThatWantRetirement; i++){
+            name = JOptionPane.showInputDialog(null, "What is the " + (i+1) + " persons name?");
+            int j = JOptionPane.showConfirmDialog(null,
+                    "Will they be freelancing?", "Please select",
+                    JOptionPane.YES_NO_OPTION);
+            if(j == JOptionPane.YES_OPTION){
+                workingConditions();
+                continue;
+            }
+            nonWorkingConditions();
         }
+
     }
 
-    public static String getUserName(){
-        return JOptionPane.showInputDialog(null, "What is the first persons name?");
+    public static void workingConditions(){
+        People wp = new WorkingPerson();
+        wp.setName(name);
+        wp.setAge(age());
+        wp.setInvoiceAmount(income());
     }
 
-    public static int getUserInvoiceAmount(){
-        return Integer.parseInt(JOptionPane.showInputDialog(null, "How much will they invoice each months?"));
+    public static void nonWorkingConditions(){
+
     }
 
     public static void assetCount(){
@@ -50,10 +63,16 @@ public class Main {
         }
     }
 
-    /*public static int income(){
 
+    public static int income(){
+        return Integer.parseInt(JOptionPane.showInputDialog(null, "How much do you invoice each month? (based on 11 months of working)"));
     }
 
+    public static int age(){
+        return Integer.parseInt(JOptionPane.showInputDialog(null, "How old are they?"));
+    }
+
+    /*
     public static int futurePayOut(){
 
     }
